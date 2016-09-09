@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html ng-app="acadgild">
+	<head>
+		<title>Assignment 15.2</title>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.2.1/angular.min.js"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.2.1/angular-route.min.js"></script>
+		<script>
+			var myapp = angular.module('acadgild', ['ngRoute']);
+
+			myapp.controller('mycontroller1', function($scope, $scope) {
+				$scope.name = "Garima";
+				$scope.about = {age: 26, lastname: 'Agarwal'};
+
+				$scope.name2 = "Rishi";
+				$scope.about2 = {age: 30, lastname: "Agrawal"};
+			});
+
+			myapp.directive("ngDisplay", function() {
+				return {
+					restrict : 'E',
+					scope: {
+						firstname: '=firstname',
+						my: '=about'
+					},
+					template : "<div>My Name is {{firstname}}</div><div> Age: {{my.age}}, Lastname: {{my.lastname}}</div>"
+				};
+			});
+		</script>
+	</head>
+	<body>
+		<div ng-controller="mycontroller1">
+			<input type="text" ng-model="name"/>
+			<ng-display firstname='name' about='about'></ng-display>
+			<ng-display firstname='name2' about='about2'></ng-display>
+		</div>
+	</body>
+</html>
